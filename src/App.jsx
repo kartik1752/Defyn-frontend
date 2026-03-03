@@ -5,7 +5,7 @@ import logo from "./assets/logo.png";
 
 function App() {
   const handleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/login";
+    window.location.href = "https://defyn-backend.vercel.app/auth/login";
   };
 
   return (

@@ -13,7 +13,7 @@ function ServerConfig() {
 
   // 🔐 Fetch existing config
   useEffect(() => {
-    fetch(`http://localhost:5000/config/${guildId}`, {
+    fetch(`https://defyn-backend.vercel.app/config/${guildId}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -32,7 +32,7 @@ function ServerConfig() {
 
   // 💾 Save
   const saveConfig = async () => {
-    await fetch(`http://localhost:5000/config/${guildId}`, {
+    await fetch(`https://defyn-backend.vercel.app/config/${guildId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
