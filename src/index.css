@@ -1,0 +1,35 @@
+/* 🌌 GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🌐 BODY */
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #ffffff, #e6f7ff);
+  color: #0a0a0a;
+  overflow-x: hidden;
+}
+
+/* ✨ GLOW BACKGROUND PARTICLES */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(#00e5ff33 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveBg 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-50px, -50px);
+  }
+}
