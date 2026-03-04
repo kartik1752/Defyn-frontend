@@ -12,7 +12,7 @@ function Dashboard() {
 
   // ✅ Fetch user
   const fetchUser = async () => {
-    const res = await fetch("https://defyn-backend.vercel.app/auth/user", {
+    const res = await fetch("https://defyn-backend.onrender.com/auth/user", {
       credentials: "include",
     });
     return res.json();
@@ -20,7 +20,7 @@ function Dashboard() {
 
   // ✅ Fetch guilds
   const fetchGuilds = async () => {
-    const res = await fetch("https://defyn-backend.vercel.app/auth/guilds", {
+    const res = await fetch("https://defyn-backend.onrender.com/auth/guilds", {
       credentials: "include",
     });
     return res.json();

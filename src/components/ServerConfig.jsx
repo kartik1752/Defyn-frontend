@@ -13,7 +13,7 @@ function ServerConfig() {
 
   // 🔐 Fetch existing config
   useEffect(() => {
-    fetch(`https://defyn-backend.vercel.app/config/${guildId}`, {
+    fetch(`https://defyn-backend.onrender.com/config/${guildId}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -32,7 +32,7 @@ function ServerConfig() {
 
   // 💾 Save
   const saveConfig = async () => {
-    await fetch(`https://defyn-backend.vercel.app/config/${guildId}`, {
+    await fetch(`https://defyn-backend.onrender.com/config/${guildId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
