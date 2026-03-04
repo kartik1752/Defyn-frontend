@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // ✅ Import Link
 import "../pages/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
   const [guilds, setGuilds] = useState([]);
 
-  // ✅ Avatar URL
   const getAvatarUrl = (user) => {
     return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
   };
 
-  // ✅ Fetch user
   const fetchUser = async () => {
     const res = await fetch("https://defyn-backend.onrender.com/auth/user", {
       credentials: "include",
@@ -18,7 +17,6 @@ function Dashboard() {
     return res.json();
   };
 
-  // ✅ Fetch guilds
   const fetchGuilds = async () => {
     const res = await fetch("https://defyn-backend.onrender.com/auth/guilds", {
       credentials: "include",
@@ -26,12 +24,10 @@ function Dashboard() {
     return res.json();
   };
 
-  // ✅ Load data
   useEffect(() => {
     const loadData = async () => {
       const userData = await fetchUser();
 
-      // 🔐 Not logged in → redirect
       if (userData.error) {
         window.location.href = "/";
         return;
@@ -52,15 +48,11 @@ function Dashboard() {
     <div className="dashboard">
       <h1>🚀 DEFYN Dashboard</h1>
 
-      {/* 👤 USER INFO */}
       <div className="user-info">
         <img src={getAvatarUrl(user)} alt="avatar" className="avatar" />
-        <h2>
-          Welcome, {user.username}#{user.discriminator}
-        </h2>
+        <h2>Welcome, {user.username}</h2>
       </div>
 
-      {/* 🏠 SERVERS */}
       <h2>Your Servers</h2>
 
       <div className="servers">
@@ -68,22 +60,26 @@ function Dashboard() {
           <div key={guild.id} className="server-card">
             <h3>{guild.name}</h3>
             <p>Server ID: {guild.id}</p>
-
             
-            <a
-              href={`https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot&permissions=8&guild_id=${guild.id}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <a href={`/dashboard/${guild.id}`}>
-  <button className="add-btn">Manage Server</button>
-</a>
-            </a>
+            <div className="server-actions">
+              {/* ✅ Use Link instead of <a> */}
+              <Link to={`/dashboard/${guild.id}`}>
+                <button className="manage-btn">Manage Server</button>
+              </Link>
+              
+              {/* ✅ Keep <a> for external links */}
+              <a 
+                href={`https://discord.com/oauth2/authorize?client_id=1473684574411296838&scope=bot&permissions=8&guild_id=${guild.id}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <button className="invite-btn">Invite Bot</button>
+              </a>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* 🔥 FEATURES */}
       <h2>Features</h2>
 
       <div className="features-grid">

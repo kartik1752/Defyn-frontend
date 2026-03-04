@@ -12,6 +12,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
       <Route path="/dashboard/:guildId" element={<Layout><ServerConfig /></Layout>} />
+      
+      {/* 404 Fallback - Optional but helpful */}
+      <Route path="*" element={<div>404 - Page Not Found</div>} />
     </Routes>
   </BrowserRouter>
 );
