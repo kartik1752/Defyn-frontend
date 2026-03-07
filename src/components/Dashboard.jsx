@@ -1,145 +1,139 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../pages/Dashboard.css";
 
 function Dashboard() {
-
-  const navigate = useNavigate();
-
   const [user, setUser] = useState(null);
   const [guilds, setGuilds] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const getAvatarUrl = (user) => {
-    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-  };
+  const API_BASE = "https://defyn-backend.onrender.com";
 
-  const fetchUser = async () => {
+  // Fetch with credentials for every request
+  const fetchWithCredentials = async (url) => {
     try {
-      const res = await fetch(
-        "https://defyn-backend.onrender.com/auth/user",
-        {
-          credentials: "include"
+      const res = await fetch(`${API_BASE}${url}`, {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         }
-      );
-
-      return res.json();
-
-    } catch (err) {
-      console.error("User fetch failed:", err);
-      return { error: true };
-    }
-  };
-
-  const fetchGuilds = async () => {
-    try {
-      const res = await fetch(
-        "https://defyn-backend.onrender.com/auth/guilds",
-        {
-          credentials: "include"
-        }
-      );
-
-      return res.json();
-
-    } catch (err) {
-      console.error("Guild fetch failed:", err);
-      return [];
-    }
-  };
-
-  useEffect(() => {
-
-    const loadData = async () => {
-
-      const userData = await fetchUser();
-
-      if (!userData || userData.error) {
-        console.log("Not authenticated → redirecting");
-        navigate("/");
-        return;
+      });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
       }
+      
+      return await res.json();
+    } catch (err) {
+      console.error(`Fetch error for ${url}:`, err);
+      throw err;
+    }
+  };
 
-      setUser(userData);
-
-      const guildData = await fetchGuilds();
-      setGuilds(guildData);
-
-      setLoading(false);
+  // Check login status immediately when component mounts
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        setLoading(true);
+        
+        // Check URL for login success param (from callback)
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('login') === 'success') {
+          console.log("Login successful, loading dashboard...");
+          // Clean URL
+          window.history.replaceState({}, '', '/dashboard');
+        }
+        
+        // Fetch user data
+        const userData = await fetchWithCredentials('/auth/user');
+        
+        if (userData.error) {
+          console.log("Not authenticated, redirecting to home");
+          navigate('/');
+          return;
+        }
+        
+        setUser(userData);
+        
+        // Fetch guilds
+        const guildData = await fetchWithCredentials('/auth/guilds');
+        setGuilds(Array.isArray(guildData) ? guildData : []);
+        
+      } catch (err) {
+        console.error("Dashboard load error:", err);
+        setError("Failed to load dashboard. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    loadData();
-
+    checkLoginStatus();
   }, [navigate]);
 
+  // Test session (debug function)
+  const testSession = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/health`, {
+        credentials: 'include'
+      });
+      const data = await res.json();
+      console.log("Session test:", data);
+    } catch (err) {
+      console.error("Session test failed:", err);
+    }
+  };
+
   if (loading) {
-    return <h2 style={{textAlign:"center"}}>Loading Dashboard...</h2>;
+    return (
+      <div className="dashboard-loading">
+        <div className="spinner"></div>
+        <h2>Loading your dashboard...</h2>
+        <button onClick={testSession} style={{marginTop: '20px'}}>
+          Debug Session
+        </button>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="dashboard-error">
+        <h2>❌ {error}</h2>
+        <button onClick={() => window.location.reload()}>Retry</button>
+        <button onClick={testSession} style={{marginLeft: '10px'}}>
+          Debug
+        </button>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
   }
 
   return (
-    <div className="dashboard">
-
-      <h1>🚀 DEFYN Dashboard</h1>
-
-      <div className="user-info">
-        <img
-          src={getAvatarUrl(user)}
-          alt="avatar"
-          className="avatar"
-        />
-        <h2>Welcome, {user.username}</h2>
-      </div>
-
-      <h2>Your Servers</h2>
-
-      <div className="servers">
-
-        {guilds.length === 0 && (
-          <p>You don't manage any servers.</p>
-        )}
-
-        {guilds.map((guild) => (
-
-          <div key={guild.id} className="server-card">
-
-            <h3>{guild.name}</h3>
-
-            <p>Server ID: {guild.id}</p>
-
-            <div className="server-actions">
-
-              <Link to={`/dashboard/${guild.id}`}>
-                <button className="manage-btn">
-                  Manage Server
-                </button>
-              </Link>
-
-              <a
-                href={`https://discord.com/oauth2/authorize?client_id=1473684574411296838&scope=bot&permissions=8&guild_id=${guild.id}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <button className="invite-btn">
-                  Invite Bot
-                </button>
-              </a>
-
-            </div>
-
+    <div className="dashboard-container">
+      <h1>Welcome, {user.username}!</h1>
+      
+      <div className="servers-section">
+        <h2>Your Servers</h2>
+        {guilds.length === 0 ? (
+          <p>No admin servers found</p>
+        ) : (
+          <div className="servers-grid">
+            {guilds.map(guild => (
+              <div key={guild.id} className="server-card">
+                <h3>{guild.name}</h3>
+                <Link to={`/dashboard/${guild.id}`}>
+                  <button>Configure</button>
+                </Link>
+              </div>
+            ))}
           </div>
-
-        ))}
-
+        )}
       </div>
-
-      <h2>Features</h2>
-
-      <div className="features-grid">
-        <div className="feature-card">🚫 Anti-Spam</div>
-        <div className="feature-card">⚔️ Anti-Raid</div>
-        <div className="feature-card">🤖 AI Moderation</div>
-      </div>
-
     </div>
   );
 }

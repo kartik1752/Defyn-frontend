@@ -5,17 +5,16 @@ import logo from "./assets/logo.png";
 
 function App() {
   const handleLogin = () => {
+    // For mobile, we need to ensure we're not in a popup
     window.location.href = "https://defyn-backend.onrender.com/auth/login";
   };
 
   return (
     <div className="app">
-      {/* 🌟 Background glow */}
       <div className="spotlight-1"></div>
       <div className="spotlight-2"></div>
       <div className="spotlight-3"></div>
 
-      {/* 🔝 Navbar */}
       <nav className="navbar">
         <div className="nav-left">
           <img src={logo} alt="Defyn Logo" className="nav-logo" />
