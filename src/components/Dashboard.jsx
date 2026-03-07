@@ -18,15 +18,11 @@ function Dashboard() {
     try {
       const res = await fetch(
         "https://defyn-backend.onrender.com/auth/user",
-        {
-          credentials: "include"
-        }
+        { credentials: "include" }
       );
 
       return res.json();
-
-    } catch (err) {
-      console.error("User fetch failed:", err);
+    } catch {
       return { error: true };
     }
   };
@@ -35,15 +31,11 @@ function Dashboard() {
     try {
       const res = await fetch(
         "https://defyn-backend.onrender.com/auth/guilds",
-        {
-          credentials: "include"
-        }
+        { credentials: "include" }
       );
 
       return res.json();
-
-    } catch (err) {
-      console.error("Guild fetch failed:", err);
+    } catch {
       return [];
     }
   };
@@ -55,7 +47,6 @@ function Dashboard() {
       const userData = await fetchUser();
 
       if (!userData || userData.error) {
-        console.log("Not authenticated → redirecting");
         navigate("/");
         return;
       }
@@ -73,74 +64,72 @@ function Dashboard() {
   }, [navigate]);
 
   if (loading) {
-    return <h2 style={{textAlign:"center"}}>Loading Dashboard...</h2>;
+    return <div className="loading">Loading Dashboard...</div>;
   }
 
   return (
+
     <div className="dashboard">
 
-      <h1>🚀 DEFYN Dashboard</h1>
+      <div className="container">
 
-      <div className="user-info">
-        <img
-          src={getAvatarUrl(user)}
-          alt="avatar"
-          className="avatar"
-        />
-        <h2>Welcome, {user.username}</h2>
-      </div>
+        <div className="user-card">
 
-      <h2>Your Servers</h2>
+          <img
+            src={getAvatarUrl(user)}
+            alt="avatar"
+            className="avatar"
+          />
 
-      <div className="servers">
+          <div>
+            <h2>{user.username}</h2>
+            <p>Manage your Discord servers</p>
+          </div>
 
-        {guilds.length === 0 && (
-          <p>You don't manage any servers.</p>
-        )}
+        </div>
 
-        {guilds.map((guild) => (
+        <h2 className="section-title">Your Servers</h2>
 
-          <div key={guild.id} className="server-card">
+        <div className="servers-grid">
 
-            <h3>{guild.name}</h3>
+          {guilds.map((guild) => (
 
-            <p>Server ID: {guild.id}</p>
+            <div key={guild.id} className="server-card">
 
-            <div className="server-actions">
+              <h3>{guild.name}</h3>
 
-              <Link to={`/dashboard/${guild.id}`}>
-                <button className="manage-btn">
-                  Manage Server
-                </button>
-              </Link>
+              <p>ID: {guild.id}</p>
 
-              <a
-                href={`https://discord.com/oauth2/authorize?client_id=1473684574411296838&scope=bot&permissions=8&guild_id=${guild.id}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <button className="invite-btn">
-                  Invite Bot
-                </button>
-              </a>
+              <div className="server-buttons">
+
+                <Link to={`/dashboard/${guild.id}`}>
+                  <button className="manage-btn">
+                    Manage
+                  </button>
+                </Link>
+
+                <a
+                  href={`https://discord.com/oauth2/authorize?client_id=1473684574411296838&scope=bot&permissions=8&guild_id=${guild.id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <button className="invite-btn">
+                    Invite
+                  </button>
+                </a>
+
+              </div>
 
             </div>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
-      </div>
-
-      <h2>Features</h2>
-
-      <div className="features-grid">
-        <div className="feature-card">🚫 Anti-Spam</div>
-        <div className="feature-card">⚔️ Anti-Raid</div>
-        <div className="feature-card">🤖 AI Moderation</div>
       </div>
 
     </div>
+
   );
 }
 

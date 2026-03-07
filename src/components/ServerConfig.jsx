@@ -65,11 +65,22 @@ function ServerConfig() {
         </div>
 
         <div className="toggle">
-          <span>🤖 AI Moderation</span>
-          <button onClick={() => toggle("aiMod")}>
-            {settings.aiMod ? "ON" : "OFF"}
-          </button>
-        </div>
+
+  <span>Anti Spam</span>
+
+  <label className="switch">
+
+    <input
+      type="checkbox"
+      checked={settings.antiSpam}
+      onChange={() => toggle("antiSpam")}
+    />
+
+    <span className="slider"></span>
+
+  </label>
+
+</div>
 
         <button className="save-btn" onClick={saveConfig}>
           Save Settings
