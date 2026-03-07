@@ -14,13 +14,19 @@ function Dashboard() {
     return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
   };
 
+  const getGuildIcon = (guild) => {
+    if (!guild.icon) {
+      return "https://cdn-icons-png.flaticon.com/512/5968/5968756.png";
+    }
+    return `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`;
+  };
+
   const fetchUser = async () => {
     try {
       const res = await fetch(
         "https://defyn-backend.onrender.com/auth/user",
         { credentials: "include" }
       );
-
       return res.json();
     } catch {
       return { error: true };
@@ -33,7 +39,6 @@ function Dashboard() {
         "https://defyn-backend.onrender.com/auth/guilds",
         { credentials: "include" }
       );
-
       return res.json();
     } catch {
       return [];
@@ -73,6 +78,8 @@ function Dashboard() {
 
       <div className="container">
 
+        {/* USER CARD */}
+
         <div className="user-card">
 
           <img
@@ -96,9 +103,24 @@ function Dashboard() {
 
             <div key={guild.id} className="server-card">
 
-              <h3>{guild.name}</h3>
+              <div className="server-header">
 
-              <p>ID: {guild.id}</p>
+                <img
+                  src={getGuildIcon(guild)}
+                  alt="server icon"
+                  className="server-icon"
+                />
+
+                <div>
+                  <h3>{guild.name}</h3>
+                  <p className="server-members">
+                    👥 {guild.memberCount || "Unknown"} members
+                  </p>
+                </div>
+
+              </div>
+
+              <p className="server-id">ID: {guild.id}</p>
 
               <div className="server-buttons">
 
