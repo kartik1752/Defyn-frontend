@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Dashboard from "./components/Dashboard";
 import ServerConfig from "./components/ServerConfig";
+import Commands from "./pages/Commands";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -12,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
       <Route path="/dashboard/:guildId" element={<Layout><ServerConfig /></Layout>} />
-      
+      <Route path="/commands" element={<Layout><Commands /></Layout>} />
       {/* 404 Fallback - Optional but helpful */}
       <Route path="*" element={<div>404 - Page Not Found</div>} />
     </Routes>

@@ -95,6 +95,18 @@ function Dashboard() {
 
         </div>
 
+        {/* COMMANDS BUTTON */}
+
+        <div className="dashboard-actions">
+
+          <Link to="/commands">
+            <button className="commands-btn">
+              📜 View Bot Commands
+            </button>
+          </Link>
+
+        </div>
+
         <h2 className="section-title">Your Servers</h2>
 
         <div className="servers-grid">
