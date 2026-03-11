@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../pages/Dashboard.css";
+import "./Dashboard.css";
 
 function Dashboard() {
 
@@ -62,6 +62,7 @@ function Dashboard() {
       setGuilds(guildData);
 
       setLoading(false);
+
     };
 
     loadData();
@@ -69,7 +70,7 @@ function Dashboard() {
   }, [navigate]);
 
   if (loading) {
-    return <div className="loading">Loading Dashboard...</div>;
+    return <div className="dashboard">Loading Dashboard...</div>;
   }
 
   return (
@@ -90,7 +91,7 @@ function Dashboard() {
 
           <div>
             <h2>{user.username}</h2>
-            <p>Manage your Discord servers</p>
+            <p>Dragon Warrior Control Panel</p>
           </div>
 
         </div>
@@ -132,7 +133,9 @@ function Dashboard() {
 
               </div>
 
-              <p className="server-id">ID: {guild.id}</p>
+              <p className="server-id">
+                ID: {guild.id}
+              </p>
 
               <div className="server-buttons">
 

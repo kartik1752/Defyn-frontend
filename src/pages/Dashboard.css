@@ -1,132 +1,327 @@
-.dashboard{
-  min-height:100vh;
-  background:linear-gradient(135deg,#020617,#0f172a);
-  color:white;
+/* ========================= */
+/* DEFYN ANIME DASHBOARD */
+/* ========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+JP:wght@400;600&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
+
+body{
+font-family:"Orbitron","Noto Sans JP",sans-serif;
+background:#0a0a0a;
+color:white;
+overflow-x:hidden;
+}
+
+/* ========================= */
+/* PANDA BACKGROUND */
+/* ========================= */
+
+.dashboard{
+
+min-height:100vh;
+padding:120px 40px 60px;
+
+background:
+linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.95)),
+url("https://wallpapercave.com/wp/wp7873059.jpg");
+
+background-size:cover;
+background-position:center;
+
+}
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
 
 .container{
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px;
+max-width:1200px;
+margin:auto;
 }
 
+/* ========================= */
 /* USER CARD */
+/* ========================= */
 
 .user-card{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:20px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border-radius:14px;
-  margin-bottom:40px;
+
+display:flex;
+align-items:center;
+gap:20px;
+
+background:rgba(20,20,20,.6);
+
+backdrop-filter:blur(10px);
+
+padding:25px;
+
+border-radius:18px;
+
+border:1px solid rgba(255,209,102,.2);
+
+margin-bottom:40px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.5);
+
 }
 
 .avatar{
-  width:70px;
-  border-radius:50%;
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+border:3px solid #ffd166;
+
 }
+
+.user-card h2{
+
+font-size:24px;
+color:#ffd166;
+
+}
+
+.user-card p{
+
+color:#ccc;
+
+}
+
+/* ========================= */
+/* ACTION BUTTON */
+/* ========================= */
+
+.dashboard-actions{
+
+margin-bottom:40px;
+
+}
+
+.commands-btn{
+
+padding:14px 30px;
+
+border:none;
+
+border-radius:40px;
+
+font-weight:700;
+
+font-size:15px;
+
+background:linear-gradient(135deg,#ffd166,#e63946);
+
+color:black;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.commands-btn:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 15px 40px rgba(255,209,102,.4);
+
+}
+
+/* ========================= */
+/* SECTION TITLE */
+/* ========================= */
 
 .section-title{
-  margin-bottom:20px;
+
+font-size:30px;
+
+margin-bottom:30px;
+
+color:#ffd166;
+
 }
 
+/* ========================= */
 /* SERVERS GRID */
+/* ========================= */
 
 .servers-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
 }
 
+/* ========================= */
 /* SERVER CARD */
+/* ========================= */
 
 .server-card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-  border-radius:14px;
-  padding:20px;
-  transition:0.25s;
-  border:1px solid rgba(255,255,255,0.05);
+
+background:rgba(20,20,25,.65);
+
+border-radius:18px;
+
+padding:25px;
+
+border:1px solid rgba(255,255,255,.05);
+
+transition:.3s;
+
+backdrop-filter:blur(10px);
+
 }
 
 .server-card:hover{
-  transform:translateY(-4px);
-  border:1px solid #22d3ee;
-  box-shadow:0 0 20px rgba(34,211,238,0.3);
+
+transform:translateY(-8px);
+
+border-color:#ffd166;
+
+box-shadow:0 20px 40px rgba(0,0,0,.6);
+
 }
 
-.server-card h3{
-  margin-bottom:10px;
-}
+/* ========================= */
+/* SERVER HEADER */
+/* ========================= */
 
-/* BUTTONS */
-
-.server-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
-
-.manage-btn{
-  background:#22c55e;
-  border:none;
-  padding:8px 14px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-.invite-btn{
-  background:#06b6d4;
-  border:none;
-  padding:8px 14px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-.manage-btn:hover{
-  background:#16a34a;
-}
-
-.invite-btn:hover{
-  background:#0891b2;
-}
-
-.loading{
-  text-align:center;
-  margin-top:100px;
-}
 .server-header{
+
 display:flex;
+
 align-items:center;
+
 gap:15px;
-margin-bottom:10px;
-min-height:60px;
+
+margin-bottom:15px;
+
 }
 
 .server-icon{
-width:50px;
-height:50px;
+
+width:55px;
+height:55px;
+
 border-radius:12px;
-object-fit:cover;
-display:block;
+
+border:2px solid rgba(255,209,102,.3);
+
 }
 
 .server-members{
-opacity:0.8;
-font-size:14px;
+
+font-size:13px;
+color:#aaa;
+
 }
 
 .server-id{
-font-size:12px;
-opacity:0.6;
-margin-top:5px;
+
+font-size:11px;
+
+color:#666;
+
+margin-bottom:15px;
+
 }
-.server-header div{
+
+/* ========================= */
+/* SERVER BUTTONS */
+/* ========================= */
+
+.server-buttons{
+
 display:flex;
+
+gap:10px;
+
+}
+
+.manage-btn,
+.invite-btn{
+
+flex:1;
+
+padding:10px;
+
+border-radius:12px;
+
+font-size:14px;
+
+font-weight:700;
+
+cursor:pointer;
+
+border:none;
+
+transition:.25s;
+
+}
+
+/* manage */
+
+.manage-btn{
+
+background:linear-gradient(135deg,#ffd166,#ff9f1c);
+
+color:black;
+
+}
+
+.manage-btn:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 10px 25px rgba(255,209,102,.5);
+
+}
+
+/* invite */
+
+.invite-btn{
+
+background:rgba(255,255,255,.05);
+
+color:#ffd166;
+
+border:1px solid rgba(255,209,102,.3);
+
+}
+
+.invite-btn:hover{
+
+background:rgba(255,209,102,.1);
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:768px){
+
+.dashboard{
+padding:100px 20px;
+}
+
+.user-card{
 flex-direction:column;
-justify-content:center;
+text-align:center;
+}
+
+.servers-grid{
+grid-template-columns:1fr;
+}
+
 }
