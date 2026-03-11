@@ -4,6 +4,7 @@ import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import "../pages/ServerConfig.css";
 import ServerCharts from "../components/ServerCharts";
+import TopStats from "../components/TopStats";
 
 function ServerConfig() {
 
@@ -289,6 +290,11 @@ function ServerConfig() {
         {/* CHARTS */}
 
         <ServerCharts data={activity} />
+
+
+        {/* TOP STATS*/}
+
+        <TopStats guildId={guildId} />
 
       </div>
 

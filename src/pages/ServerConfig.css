@@ -272,3 +272,20 @@ color:#ffd166;
 margin-bottom:15px;
 
 }
+.top-stats {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.leaderboard {
+  flex: 1;
+  background: #0f0f17;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.leader-item {
+  padding: 10px;
+  border-bottom: 1px solid #2a2a3d;
+}
