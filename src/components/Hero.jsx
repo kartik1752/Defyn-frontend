@@ -8,24 +8,31 @@ function Hero() {
   };
 
   return (
-    <div className="hero">
-      {/* 🔥 Main heading */}
-      <h1 className="main-title">
-        Defyn<br />
-        <span className="subtitle">Powerful Discord Bot</span>
-      </h1>
+    <section className="hero">
 
-      {/* 🧠 Description */}
-      <p className="description">
-        Add it to your server and enjoy smart moderation,<br />
-        automation, and next-level security.
-      </p>
+      {/* Po silhouette background */}
+      <div className="hero-bg"></div>
 
-      {/* 🚀 CTA BUTTON */}
-      <button className="btn-primary" onClick={handleAddBot}>
-        🚀 Add to Server
-      </button>
-    </div>
+      <div className="hero-content">
+
+        <h1 className="main-title">
+          DEFYN BOT
+        </h1>
+
+        <p className="subtitle">
+          The Dragon Warrior of Discord Moderation
+        </p>
+
+        <button
+          className="btn-primary"
+          onClick={handleAddBot}
+        >
+          Add To Server
+        </button>
+
+      </div>
+
+    </section>
   );
 }
 
