@@ -1,26 +1,206 @@
+/* ============================= */
+/* COMMANDS PAGE */
+/* ============================= */
+
 .commands-page {
-  padding: 40px;
+  padding: 80px 40px;
   text-align: center;
+  min-height: 100vh;
 }
+
+/* title */
+
+.commands-page h1{
+  font-size:42px;
+  color:#ffd166;
+  margin-bottom:40px;
+
+  text-shadow:
+  0 0 10px rgba(255,209,102,.5),
+  0 0 30px rgba(230,57,70,.3);
+}
+
+/* ============================= */
+/* GRID */
+/* ============================= */
 
 .commands-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  margin-top:40px;
 }
+
+/* ============================= */
+/* COMMAND CARD */
+/* ============================= */
 
 .command-card {
-  background: #1e1e2f;
-  padding: 20px;
-  border-radius: 12px;
-  transition: 0.2s;
+
+  position:relative;
+
+  background:rgba(30,30,47,.75);
+
+  backdrop-filter:blur(12px);
+
+  padding:28px;
+
+  border-radius:16px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  transition:all .35s ease;
+
+  text-align:left;
+
+  overflow:hidden;
 }
+
+/* glow border on hover */
 
 .command-card:hover {
-  transform: translateY(-5px);
+
+  transform:translateY(-8px) scale(1.02);
+
+  border-color:#ffd166;
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,.6),
+  0 0 25px rgba(255,209,102,.3);
+
 }
 
+/* ============================= */
+/* SWORD SLASH EFFECT */
+/* ============================= */
+
+.command-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:-100%;
+  left:-50%;
+
+  width:200%;
+  height:300%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.6),
+    transparent
+  );
+
+  transform:rotate(25deg);
+
+  transition:.6s;
+
+}
+
+.command-card:hover::after{
+
+  top:100%;
+
+}
+
+/* ============================= */
+/* CATEGORY TITLE */
+/* ============================= */
+
 .command-card h3 {
-  color: #5865f2;
+
+  font-size:22px;
+
+  margin-bottom:16px;
+
+  color:#ffd166;
+
+}
+
+/* ============================= */
+/* COMMAND LIST */
+/* ============================= */
+
+.command-list{
+
+  list-style:none;
+
+  padding:0;
+
+}
+
+.command-list li{
+
+  margin-bottom:10px;
+
+  color:#cfcfcf;
+
+  font-size:15px;
+
+}
+
+/* command highlight */
+
+.command-list b{
+
+  color:#e63946;
+
+  font-weight:700;
+
+}
+
+/* ============================= */
+/* SCROLL ANIMATION */
+/* ============================= */
+
+.command-card{
+
+  opacity:0;
+  transform:translateY(40px);
+
+  animation:cardReveal .8s ease forwards;
+
+}
+
+.command-card:nth-child(2){
+  animation-delay:.1s;
+}
+
+.command-card:nth-child(3){
+  animation-delay:.2s;
+}
+
+.command-card:nth-child(4){
+  animation-delay:.3s;
+}
+
+@keyframes cardReveal{
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media(max-width:768px){
+
+.commands-page{
+  padding:60px 20px;
+}
+
+.commands-page h1{
+  font-size:32px;
+}
+
+.command-card{
+  padding:22px;
+}
+
 }

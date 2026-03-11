@@ -1,76 +1,66 @@
 import "../styles/Commands.css";
 
 function Commands() {
+
+  const commandGroups = [
+    {
+      title: "📜 Moderation",
+      commands: [
+        { cmd: ".warn", desc: "Warn a user" },
+        { cmd: ".mute", desc: "Mute a user for a duration" },
+        { cmd: ".ban", desc: "Ban a member" }
+      ]
+    },
+    {
+      title: "🎮 Fun",
+      commands: [
+        { cmd: ".hug", desc: "Hug someone" },
+        { cmd: ".punch", desc: "Punch someone" },
+        { cmd: ".kick", desc: "Kick someone" },
+        { cmd: ".ttt", desc: "Play Tic Tac Toe" }
+      ]
+    },
+    {
+      title: "🌤 Utility",
+      commands: [
+        { cmd: ".weather / .w", desc: "Check weather of a city" },
+        { cmd: ".av", desc: "Get a user's avatar" },
+        { cmd: ".userinfo / .ui", desc: "Display user information" }
+      ]
+    },
+    {
+      title: "⚙️ Server",
+      commands: [
+        { cmd: ".afk", desc: "Set AFK status" }
+      ]
+    }
+  ];
+
   return (
     <div className="commands-page">
 
       <h1>📜 Defyn Commands</h1>
 
-      {/* Moderation */}
-      <div className="command-section">
-        <h2>📜 Moderation</h2>
+      <div className="commands-grid">
 
-        <div className="command">
-          <b>.warn</b> — Warn a user
-        </div>
+        {commandGroups.map((group, index) => (
+          <div key={index} className="command-card">
 
-        <div className="command">
-          <b>.mute</b> — Mute a user for a duration
-        </div>
+            <h3>{group.title}</h3>
 
-        <div className="command">
-          <b>.ban</b> — Ban a member
-        </div>
-      </div>
+            <ul className="command-list">
 
+              {group.commands.map((c, i) => (
+                <li key={i}>
+                  <b>{c.cmd}</b> — {c.desc}
+                </li>
+              ))}
 
-      {/* Fun */}
-      <div className="command-section">
-        <h2>🎮 Fun</h2>
+            </ul>
 
-        <div className="command">
-          <b>.hug</b>
-        </div>
+          </div>
+        ))}
 
-        <div className="command">
-          <b>.punch</b>
-        </div>
-
-        <div className="command">
-          <b>.kick</b>
-        </div>
-
-        <div className="command">
-          <b>.ttt</b> — Tic Tac Toe
-        </div>
-      </div>
-
-
-      {/* Utility */}
-      <div className="command-section">
-        <h2>🌤 Utility</h2>
-
-        <div className="command">
-          <b>.weather</b> / <b>.w</b>
-        </div>
-
-        <div className="command">
-          <b>.av</b> — Avatar
-        </div>
-
-        <div className="command">
-          <b>.userinfo</b> / <b>.ui</b>
-        </div>
-      </div>
-
-
-      {/* Server */}
-      <div className="command-section">
-        <h2>⚙️ Server</h2>
-
-        <div className="command">
-          <b>.afk</b>
-        </div>
       </div>
 
     </div>
