@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./ServerConfig.css";
+import "../pages/ServerConfig.css";
 
 function ServerConfig() {
 
