@@ -123,6 +123,11 @@ z-index:-1;
 /* CHERRY BLOSSOM PETALS */
 /* ============================= */
 
+
+/* ============================= */
+/* CHERRY BLOSSOM PETALS */
+/* ============================= */
+
 .petals{
 position:fixed;
 top:0;
@@ -131,23 +136,34 @@ width:100%;
 height:100%;
 pointer-events:none;
 overflow:hidden;
-z-index:-1;
+z-index:2;   /* important so they appear above background */
 }
 
 .petal{
+
 position:absolute;
-width:15px;
-height:15px;
-background:pink;
+
+width:14px;
+height:14px;
+
+background:radial-gradient(circle at 30% 30%, #ffd1dc, #ff7aa2);
+
 border-radius:50% 50% 50% 0;
-opacity:.7;
-animation:fall linear infinite;
+
+transform:rotate(-45deg);
+
+opacity:.85;
+
+animation:petalFall linear infinite;
+
 }
 
-@keyframes fall{
+/* falling animation */
+
+@keyframes petalFall{
 
 0%{
-transform:translateY(-10vh) rotate(0deg);
+transform:translateY(-10vh) translateX(0) rotate(0deg);
 opacity:0;
 }
 
@@ -155,12 +171,21 @@ opacity:0;
 opacity:1;
 }
 
+50%{
+transform:translateY(50vh) translateX(30px) rotate(180deg);
+}
+
 100%{
-transform:translateY(110vh) rotate(360deg);
+transform:translateY(110vh) translateX(-30px) rotate(360deg);
 opacity:0;
 }
 
 }
+
+
+
+
+
 
 .spotlight-1{
 

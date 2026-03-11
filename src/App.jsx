@@ -14,18 +14,18 @@ function App() {
 
       {/* 🌸 Floating Cherry Blossom Petals */}
       <div className="petals">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="petal"
-            style={{
-              left: Math.random() * 100 + "%",
-              animationDuration: 8 + Math.random() * 10 + "s",
-              animationDelay: Math.random() * 5 + "s"
-            }}
-          />
-        ))}
-      </div>
+  {[...Array(25)].map((_, i) => (
+    <div
+      key={i}
+      className="petal"
+      style={{
+        left: Math.random() * 100 + "%",
+        animationDuration: 8 + Math.random() * 8 + "s",
+        animationDelay: Math.random() * 6 + "s"
+      }}
+    />
+  ))}
+</div>
 
       {/* Background lights */}
       <div className="spotlight-1"></div>
