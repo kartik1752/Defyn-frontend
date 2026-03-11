@@ -289,3 +289,18 @@ margin-bottom:15px;
   padding: 10px;
   border-bottom: 1px solid #2a2a3d;
 }
+
+.insights-panel{
+  margin-top:30px;
+  padding:20px;
+  border-radius:12px;
+  background:#111;
+}
+
+.insights-panel h2{
+  margin-bottom:10px;
+}
+
+.insights-panel p{
+  margin:6px 0;
+}

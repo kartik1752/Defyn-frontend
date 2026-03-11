@@ -6,6 +6,7 @@ import "../pages/ServerConfig.css";
 import ServerCharts from "../components/ServerCharts";
 import TopStats from "../components/TopStats";
 import ServerGrowth from "../components/ServerGrowth";
+import ServerInsights from "../components/ServerInsights";
 
 function ServerConfig() {
 
@@ -300,6 +301,10 @@ function ServerConfig() {
         {/*SERVER GROWTH*/}
 
         <ServerGrowth guildId={guildId} />
+
+        {/* Server Insights*/}
+
+        <ServerInsights guildId={guildId} />
 
       </div>
 
