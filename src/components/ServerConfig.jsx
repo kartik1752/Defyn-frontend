@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../pages/ServerConfig.css";
+import "./ServerConfig.css";
 
 function ServerConfig() {
 
@@ -57,80 +57,92 @@ function ServerConfig() {
 
     <div className="config-page">
 
-      <h1>⚙️ Server Config</h1>
+      <h1>⚙️ Server Control Panel</h1>
       <p>Guild ID: {guildId}</p>
 
-      <div className="config-card">
+      <div className="modules-grid">
 
         {/* Anti Spam */}
 
-        <div className="toggle">
+        <div className="module-card">
 
-          <span>🚫 Anti Spam</span>
+          <h2>🚫 Anti Spam</h2>
 
-          <label className="switch">
+          <p className="desc">
+            Prevents spam flooding and message abuse.
+          </p>
 
-            <input
-              type="checkbox"
-              checked={settings.antiSpam}
-              onChange={() => toggle("antiSpam")}
-            />
+          <p className={`status ${settings.antiSpam ? "on" : "off"}`}>
+            Status: {settings.antiSpam ? "Enabled" : "Disabled"}
+          </p>
 
-            <span className="slider"></span>
-
-          </label>
+          <button
+            className="toggle-btn"
+            onClick={() => toggle("antiSpam")}
+          >
+            {settings.antiSpam ? "Disable" : "Enable"}
+          </button>
 
         </div>
+
 
         {/* Anti Raid */}
 
-        <div className="toggle">
+        <div className="module-card">
 
-          <span>⚔️ Anti Raid</span>
+          <h2>⚔️ Anti Raid</h2>
 
-          <label className="switch">
+          <p className="desc">
+            Detects mass joins and protects against raids.
+          </p>
 
-            <input
-              type="checkbox"
-              checked={settings.antiRaid}
-              onChange={() => toggle("antiRaid")}
-            />
+          <p className={`status ${settings.antiRaid ? "on" : "off"}`}>
+            Status: {settings.antiRaid ? "Enabled" : "Disabled"}
+          </p>
 
-            <span className="slider"></span>
-
-          </label>
+          <button
+            className="toggle-btn"
+            onClick={() => toggle("antiRaid")}
+          >
+            {settings.antiRaid ? "Disable" : "Enable"}
+          </button>
 
         </div>
+
 
         {/* AI Moderation */}
 
-        <div className="toggle">
+        <div className="module-card">
 
-          <span>🤖 AI Moderation</span>
+          <h2>🤖 AI Moderation</h2>
 
-          <label className="switch">
+          <p className="desc">
+            Uses AI to detect toxic or harmful messages.
+          </p>
 
-            <input
-              type="checkbox"
-              checked={settings.aiMod}
-              onChange={() => toggle("aiMod")}
-            />
+          <p className={`status ${settings.aiMod ? "on" : "off"}`}>
+            Status: {settings.aiMod ? "Enabled" : "Disabled"}
+          </p>
 
-            <span className="slider"></span>
-
-          </label>
+          <button
+            className="toggle-btn"
+            onClick={() => toggle("aiMod")}
+          >
+            {settings.aiMod ? "Disable" : "Enable"}
+          </button>
 
         </div>
 
-        <button className="save-btn" onClick={saveConfig}>
-          Save Settings
-        </button>
-
       </div>
+
+      <button className="save-btn" onClick={saveConfig}>
+        Save Settings
+      </button>
 
     </div>
 
   );
+
 }
 
 export default ServerConfig;

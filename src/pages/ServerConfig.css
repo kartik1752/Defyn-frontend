@@ -1,83 +1,168 @@
-.config-page {
-  padding: 40px;
-  color: white;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #020617, #000);
+.config-page{
+
+min-height:100vh;
+
+padding:120px 40px;
+
+color:white;
+
+background:
+linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.95)),
+url("https://wallpapercave.com/wp/wp7873059.jpg");
+
+background-size:cover;
+background-position:center;
+
 }
 
-.config-card {
-  margin-top: 20px;
-  padding: 30px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(20px);
+.config-page h1{
+
+font-size:36px;
+
+color:#ffd166;
+
+margin-bottom:10px;
+
 }
 
-.toggle {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+.modules-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+margin-top:40px;
+
 }
 
-.toggle button {
-  padding: 8px 15px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  background: #00f0ff;
+/* MODULE CARD */
+
+.module-card{
+
+background:rgba(20,20,25,.7);
+
+backdrop-filter:blur(10px);
+
+border-radius:18px;
+
+padding:25px;
+
+border:1px solid rgba(255,209,102,.2);
+
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+
+transition:.3s;
+
 }
 
-.save-btn {
-  margin-top: 20px;
-  padding: 12px;
-  width: 100%;
-  border-radius: 12px;
-  border: none;
-  background: #00f0ff;
-  font-weight: bold;
-  cursor: pointer;
-}
-.switch{
-  position:relative;
-  display:inline-block;
-  width:50px;
-  height:24px;
+.module-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.8);
+
 }
 
-.switch input{
-  opacity:0;
-  width:0;
-  height:0;
+/* DESCRIPTION */
+
+.desc{
+
+color:#aaa;
+
+margin:10px 0;
+
+font-size:14px;
+
 }
 
-.slider{
-  position:absolute;
-  cursor:pointer;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:#374151;
-  border-radius:24px;
-  transition:.3s;
+/* STATUS */
+
+.status{
+
+font-weight:bold;
+
+margin-bottom:15px;
+
 }
 
-.slider:before{
-  position:absolute;
-  content:"";
-  height:18px;
-  width:18px;
-  left:3px;
-  bottom:3px;
-  background:white;
-  border-radius:50%;
-  transition:.3s;
+.status.on{
+
+color:#4ade80;
+
 }
 
-input:checked + .slider{
-  background:#06b6d4;
+.status.off{
+
+color:#ef4444;
+
 }
 
-input:checked + .slider:before{
-  transform:translateX(26px);
+/* TOGGLE BUTTON */
+
+.toggle-btn{
+
+padding:10px 16px;
+
+border:none;
+
+border-radius:10px;
+
+background:linear-gradient(135deg,#ffd166,#ff9f1c);
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.toggle-btn:hover{
+
+transform:scale(1.05);
+
+}
+
+/* SAVE BUTTON */
+
+.save-btn{
+
+margin-top:40px;
+
+width:100%;
+
+max-width:400px;
+
+padding:14px;
+
+border:none;
+
+border-radius:14px;
+
+font-weight:bold;
+
+font-size:16px;
+
+background:linear-gradient(135deg,#e63946,#ffd166);
+
+cursor:pointer;
+
+}
+
+.save-btn:hover{
+
+transform:scale(1.05);
+
+}
+
+@media(max-width:768px){
+
+.config-page{
+
+padding:100px 20px;
+
+}
+
 }
