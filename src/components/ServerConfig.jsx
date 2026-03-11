@@ -5,6 +5,7 @@ import "react-calendar-heatmap/dist/styles.css";
 import "../pages/ServerConfig.css";
 import ServerCharts from "../components/ServerCharts";
 import TopStats from "../components/TopStats";
+import ServerGrowth from "../components/ServerGrowth";
 
 function ServerConfig() {
 
@@ -295,6 +296,10 @@ function ServerConfig() {
         {/* TOP STATS*/}
 
         <TopStats guildId={guildId} />
+
+        {/*SERVER GROWTH*/}
+
+        <ServerGrowth guildId={guildId} />
 
       </div>
 
