@@ -32,6 +32,7 @@ function ServerConfig() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [guildInfo, setGuildInfo] = useState(null);
 
   /* =========================
      FETCH CONFIG
@@ -66,6 +67,36 @@ function ServerConfig() {
     fetchConfig();
 
   }, [guildId]);
+
+
+  useEffect(() => {
+
+  const fetchGuildInfo = async () => {
+
+    try {
+
+      const res = await fetch(
+        `https://defyn-backend.onrender.com/guild/${guildId}`,
+        { credentials: "include" }
+      );
+
+      if (!res.ok) throw new Error("Guild fetch failed");
+
+      const data = await res.json();
+
+      setGuildInfo(data);
+
+    } catch (err) {
+
+      console.error("Guild info error:", err);
+
+    }
+
+  };
+
+  fetchGuildInfo();
+
+}, [guildId]);
 
 
   /* =========================
@@ -233,7 +264,28 @@ function ServerConfig() {
     <div className="config-page">
 
       <h1>⚙️ Server Control Panel</h1>
-      <p>Guild ID: {guildId}</p>
+      <div className="guild-header">
+
+  {guildInfo && (
+    <>
+      <img
+        className="guild-icon"
+        src={
+          guildInfo.icon
+            ? `https://cdn.discordapp.com/icons/${guildInfo.id}/${guildInfo.icon}.png`
+            : "https://cdn.discordapp.com/embed/avatars/0.png"
+        }
+        alt="Server Icon"
+      />
+
+      <div>
+        <h2>{guildInfo.name}</h2>
+        <p>Guild ID: {guildId}</p>
+      </div>
+    </>
+  )}
+
+</div>
 
       {/* =========================
          SERVER ANALYTICS
