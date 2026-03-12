@@ -76,15 +76,17 @@ function ServerConfig() {
     try {
 
       const res = await fetch(
-        `https://defyn-backend.onrender.com/guild/${guildId}`,
+        "https://defyn-backend.onrender.com/guilds",
         { credentials: "include" }
       );
 
       if (!res.ok) throw new Error("Guild fetch failed");
 
-      const data = await res.json();
+      const guilds = await res.json();
 
-      setGuildInfo(data);
+      const guild = guilds.find(g => g.id === guildId);
+
+      setGuildInfo(guild);
 
     } catch (err) {
 
