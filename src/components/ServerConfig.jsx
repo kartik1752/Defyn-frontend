@@ -22,6 +22,16 @@ function ServerConfig() {
     aiMod: false
   });
 
+  const getGuildIcon = (guild) => {
+
+  if (!guild || !guild.icon) {
+    return "https://cdn-icons-png.flaticon.com/512/5968/5968756.png";
+  }
+
+  return `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`;
+
+};
+
   const [activity, setActivity] = useState([]);
 
   const [stats, setStats] = useState({
@@ -76,7 +86,7 @@ function ServerConfig() {
     try {
 
       const res = await fetch(
-        "https://defyn-backend.onrender.com/guilds",
+        "https://defyn-backend.onrender.com/auth/guilds",
         { credentials: "include" }
       );
 
@@ -99,6 +109,7 @@ function ServerConfig() {
   fetchGuildInfo();
 
 }, [guildId]);
+
 
 
   /* =========================
@@ -268,23 +279,23 @@ function ServerConfig() {
       <h1>⚙️ Server Control Panel</h1>
       <div className="guild-header">
 
-  {guildInfo && (
+   {guildInfo && (
+
     <>
+
       <img
-        className="guild-icon"
-        src={
-          guildInfo.icon
-            ? `https://cdn.discordapp.com/icons/${guildInfo.id}/${guildInfo.icon}.png`
-            : "https://cdn.discordapp.com/embed/avatars/0.png"
-        }
+        src={getGuildIcon(guildInfo)}
         alt="Server Icon"
+        className="guild-icon"
       />
 
-      <div>
+      <div className="guild-details">
         <h2>{guildInfo.name}</h2>
         <p>Guild ID: {guildId}</p>
       </div>
+
     </>
+
   )}
 
 </div>
